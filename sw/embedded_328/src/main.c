@@ -49,7 +49,7 @@ typedef enum
    LED_UNDER_20_PERCENT = 4
 }ledPercentIndicatorType;
 
-/* 80%, 60%, 40%, 20% of 6 * 3.7V, 5* 3.7V, ... 1 * 3.7V */
+/* 80%, 60%, 40%, 20% of 1 * 3.7V, 5* 3.7V, ... 6 * 3.7V */
 float32 cellArray[6][4] =
 {
       {2.96, 2.22, 1.5, 0.7},

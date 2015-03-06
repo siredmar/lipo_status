@@ -9340,8 +9340,8 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="+3V4" library="supply1" deviceset="+3V3" device=""/>
 <part name="TP1" library="testpad" deviceset="TPSQ" device="PAD1-13"/>
 <part name="TP2" library="testpad" deviceset="TPSQ" device="PAD1-13"/>
-<part name="R19" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
-<part name="R20" library="rcl" deviceset="R-EU_" device="R0603" value="1k3"/>
+<part name="R19" library="rcl" deviceset="R-EU_" device="R0603" value="100k"/>
+<part name="R20" library="rcl" deviceset="R-EU_" device="R0603" value="13k"/>
 <part name="P+3" library="supply1" deviceset="VCC" device=""/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 </parts>

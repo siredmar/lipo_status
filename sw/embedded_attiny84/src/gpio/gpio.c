@@ -59,7 +59,7 @@ void gpio_WriteChannel(gpio_ChannelType channel, gpio_PinState state)
    if(state == GPIO_HIGH)
       *(gpio_RegisterAdress_as[port_ui8].gpio_PortRegister_pui8) |= (uint8)(state << pin_ui8);
    else
-      *(gpio_RegisterAdress_as[port_ui8].gpio_PortRegister_pui8) &= (uint8)(state << pin_ui8);
+      *(gpio_RegisterAdress_as[port_ui8].gpio_PortRegister_pui8) &= ~(uint8)(state << pin_ui8);
 }
 
 void gpio_ToggleChannel(gpio_ChannelType channel)

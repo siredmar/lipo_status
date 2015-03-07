@@ -15,7 +15,7 @@
 #define LED_CHANNEL_3   GPIO_CHANNEL_PA5
 #define LED_CHANNEL_4   GPIO_CHANNEL_PA6
 
-#define DIGIT_DIFF 5
+#define DIGIT_DIFF 8
 #define in_between(x, y, z) (x > (y - z)) && (x < (y + z))
 #define ADC_DIGITS (4095)
 #define ADC_REF_VOLTAGE (5.0)
@@ -24,12 +24,12 @@
 
 typedef enum
 {
-   LIPO_CELL_1 = 355,
-   LIPO_CELL_2 = 490,
-   LIPO_CELL_3 = 568,
-   LIPO_CELL_4 = 600,
-   LIPO_CELL_5 = 632,
-   LIPO_CELL_6 = 644,
+   LIPO_CELL_1 = 358,
+   LIPO_CELL_2 = 494,
+   LIPO_CELL_3 = 572,
+   LIPO_CELL_4 = 607,
+   LIPO_CELL_5 = 638,
+   LIPO_CELL_6 = 650,
    LIPO_CELL_NONE = 0
 }lipoCellDigitsType;
 
@@ -111,15 +111,15 @@ void showLedStatus(ledPercentIndicatorType led)
 }
 
 
-/* 80%, 60%, 40%, 20% of 1 * 3.7V, 5* 3.7V, ... 6 * 3.7V */
+/* 80%, 60%, 40%, 20% of 1 to 6 Cells */
 float32 cellArray[6][4] =
 {
-      {2.96, 2.22, 1.5, 0.7},
-      {5.9, 4.4, 3.0, 1.5},
-      {8.9, 6.7, 4.4, 2.2},
-      {11.8, 8.9, 5.9, 3.0},
-      {14.8, 11.1, 7.4, 3.7},
-      {17.7, 13.3, 8.9, 4.4},
+      { 4.02,   3.84,    3.66,    3.48}, /* 1 Cell */
+      { 8.04,   7.68,    7.32,    6.96}, /* 2 Cells */
+      {12.06,  11.52,   10.98,   10.44}, /* 3 Cells */
+      {16.08,  15.36,   14.64,   13.92}, /* 4 Cells */
+      {20.10,  19.20,   18.30,   17.40}, /* 5 Cells */
+      {24.12,  23.04,   21.96,   20.88}, /* 6 Cells */
 };
 
 lipoCellSwitchType checkLipoSwitch(uint16 adc_channel)

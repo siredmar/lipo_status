@@ -17,7 +17,7 @@
 #define LED_CHANNEL_3   GPIO_CHANNEL_PB1
 #define LED_CHANNEL_4   GPIO_CHANNEL_PB0
 
-#define DIGIT_DIFF 5
+#define DIGIT_DIFF 8
 #define in_between(x, y, z) (x > (y - z)) && (x < (y + z))
 #define ADC_DIGITS (4095)
 #define ADC_REF_VOLTAGE (5.0)
@@ -26,12 +26,12 @@
 
 typedef enum
 {
-   LIPO_CELL_1 = 355,
-   LIPO_CELL_2 = 490,
-   LIPO_CELL_3 = 568,
-   LIPO_CELL_4 = 600,
-   LIPO_CELL_5 = 632,
-   LIPO_CELL_6 = 644,
+   LIPO_CELL_1 = 358,
+   LIPO_CELL_2 = 494,
+   LIPO_CELL_3 = 572,
+   LIPO_CELL_4 = 607,
+   LIPO_CELL_5 = 638,
+   LIPO_CELL_6 = 650,
    LIPO_CELL_NONE = 0
 }lipoCellDigitsType;
 
@@ -58,6 +58,7 @@ typedef enum
 
 void showLedStatus(ledPercentIndicatorType led)
 {
+   static uint8 blink = 0;
    switch(led)
    {
    case LED_FULL:
@@ -100,26 +101,33 @@ void showLedStatus(ledPercentIndicatorType led)
       gpio_WriteChannel(LED_CHANNEL_4, TRUE);
       break;
 
+   case LED_INVALID:
+      if(blink % 2 == 0)
+      {
+         gpio_WriteChannel(LED_CHANNEL_0, TRUE);
+      }
+      else
+      {
+         gpio_WriteChannel(LED_CHANNEL_0, FALSE);
+      }
+      blink++;
+      break;
    default:
-      gpio_WriteChannel(LED_CHANNEL_0, TRUE);
-      gpio_WriteChannel(LED_CHANNEL_1, FALSE);
-      gpio_WriteChannel(LED_CHANNEL_2, TRUE);
-      gpio_WriteChannel(LED_CHANNEL_3, FALSE);
-      gpio_WriteChannel(LED_CHANNEL_4, TRUE);
+
       break;
    }
 }
 
 
-/* 80%, 60%, 40%, 20% of 1 * 3.7V, 5* 3.7V, ... 6 * 3.7V */
+/* 80%, 60%, 40%, 20% of 1 to 6 Cells */
 float32 cellArray[6][4] =
 {
-      {2.96, 2.22, 1.5, 0.7},
-      {5.9, 4.4, 3.0, 1.5},
-      {8.9, 6.7, 4.4, 2.2},
-      {11.8, 8.9, 5.9, 3.0},
-      {14.8, 11.1, 7.4, 3.7},
-      {17.7, 13.3, 8.9, 4.4},
+      { 4.02,   3.84,    3.66,    3.48}, /* 1 Cell */
+      { 8.04,   7.68,    7.32,    6.96}, /* 2 Cells */
+      {12.06,  11.52,   10.98,   10.44}, /* 3 Cells */
+      {16.08,  15.36,   14.64,   13.92}, /* 4 Cells */
+      {20.10,  19.20,   18.30,   17.40}, /* 5 Cells */
+      {24.12,  23.04,   21.96,   20.88}, /* 6 Cells */
 };
 
 lipoCellSwitchType checkLipoSwitch(uint16 adc_channel)
@@ -165,29 +173,20 @@ ledPercentIndicatorType checkUbatState(lipoCellSwitchType cells, float32 ubatVol
    ledPercentIndicatorType ledPercentIndicator;
 
    ledPercentIndicator = LED_FULL;
-//
-//   sprintf(sprintfBuffer, "cellArray[%i][%i] = %f\n\r", cells -1, 0, cellArray[cells - 1][0]);
-//   uart_puts(sprintfBuffer);
-//   sprintf(sprintfBuffer, "cellArray[%i][%i] = %f\n\r", cells -1, 1, cellArray[cells - 1][1]);
-//   uart_puts(sprintfBuffer);
-//   sprintf(sprintfBuffer, "cellArray[%i][%i] = %f\n\r", cells -1, 2, cellArray[cells - 1][2]);
-//   uart_puts(sprintfBuffer);
-//   sprintf(sprintfBuffer, "cellArray[%i][%i] = %f\n\r", cells -1, 3, cellArray[cells - 1][3]);
-//   uart_puts(sprintfBuffer);
 
-   if(ubatVoltage < cellArray[cells][0])
+   if(ubatVoltage < cellArray[cells - 1][0])
    {
       ledPercentIndicator = LED_UNDER_80_PERCENT;
    }
-   if(ubatVoltage < cellArray[cells][1])
+   if(ubatVoltage < cellArray[cells - 1][1])
    {
       ledPercentIndicator = LED_UNDER_60_PERCENT;
    }
-   if(ubatVoltage < cellArray[cells][2])
+   if(ubatVoltage < cellArray[cells - 1][2])
    {
       ledPercentIndicator = LED_UNDER_40_PERCENT;
    }
-   if(ubatVoltage < cellArray[cells][3])
+   if(ubatVoltage < cellArray[cells - 1][3])
    {
       ledPercentIndicator = LED_UNDER_20_PERCENT;
    }
@@ -204,19 +203,26 @@ int main()
    float32 ubatVoltage;
    uint8 led = 0;
 
+
    uart_init(RECEPTION_DISABLED, TRANSMISSION_ENABLED, INTERRUPT_DISABLED);
    uart_puts("\n\r");
+   gpio_init();
    adc_init(ADC_CALLBACK_NULL_PTR);
+
 
    sei(); /* Enable the interrupts */
    while(1)
    {
       adc_setChannel(ADC_CHANNEL_0);
+      _delay_ms(100);
       lipoSwitchChannel = adc_read10bit();
+      _delay_ms(100);
       lipo_switch = checkLipoSwitch(lipoSwitchChannel);
 
+      _delay_ms(100);
       adc_setChannel(ADC_CHANNEL_1);
       ubatChannel = adc_read10bit();
+      _delay_ms(100);
       ubatVoltage = ubat_digit_to_volt(ubatChannel);
 
       if(lipo_switch > SWITCH_CELL_NONE)
@@ -229,9 +235,9 @@ int main()
       }
       showLedStatus(led);
 
-      sprintf(sprintfBuf, "ubat voltage: %.1f, lipo cells: %d, led: %d\n\r", ubatVoltage, lipo_switch, led);
+      sprintf(sprintfBuf, "switch raw: %d, raw: %d, ubat voltage: %.2f, lipo cells: %d, led: %d\n\r", lipoSwitchChannel, ubatChannel, ubatVoltage, lipo_switch, led);
       uart_puts(sprintfBuf);
-	_delay_ms(500);
+      _delay_ms(100);
    }
    return 0;
 }

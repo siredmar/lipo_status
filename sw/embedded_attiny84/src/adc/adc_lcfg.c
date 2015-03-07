@@ -50,7 +50,7 @@ static const adc_ConfigType adc_initialConfiguration_s =
         ADC_CHANNEL_7,                      // defaultChannel_e;
         ADC_DIGITAL_INPUT_DISABLE_NONE,     // digitalInputDisable_e;
         ADC_CALLBACK_NULL_PTR,              // callbackFunc_pv;
-        ADC_AVERAGE_4_SAMPLES               // averageControl_e;
+        ADC_AVERAGE_2_SAMPLES               // averageControl_e;
 };
 
 

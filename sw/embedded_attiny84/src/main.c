@@ -9,6 +9,12 @@
 #include "adc/adc.h"
 #include "adc/adc_lcfg.h"
 
+#define LED_CHANNEL_0   GPIO_CHANNEL_PA2
+#define LED_CHANNEL_1   GPIO_CHANNEL_PA3
+#define LED_CHANNEL_2   GPIO_CHANNEL_PA4
+#define LED_CHANNEL_3   GPIO_CHANNEL_PA5
+#define LED_CHANNEL_4   GPIO_CHANNEL_PA6
+
 #define DIGIT_DIFF 5
 #define in_between(x, y, z) (x > (y - z)) && (x < (y + z))
 #define ADC_DIGITS (4095)
@@ -44,8 +50,66 @@ typedef enum
    LED_UNDER_80_PERCENT = 1,
    LED_UNDER_60_PERCENT = 2,
    LED_UNDER_40_PERCENT = 3,
-   LED_UNDER_20_PERCENT = 4
+   LED_UNDER_20_PERCENT = 4,
+   LED_INVALID          = 5
 }ledPercentIndicatorType;
+
+
+void showLedStatus(ledPercentIndicatorType led)
+{
+   switch(led)
+   {
+   case LED_FULL:
+      gpio_WriteChannel(LED_CHANNEL_0, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_1, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_2, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_3, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_4, TRUE);
+      break;
+
+   case LED_UNDER_80_PERCENT:
+      gpio_WriteChannel(LED_CHANNEL_0, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_1, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_2, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_3, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_4, TRUE);
+      break;
+
+   case LED_UNDER_60_PERCENT:
+      gpio_WriteChannel(LED_CHANNEL_0, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_1, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_2, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_3, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_4, TRUE);
+      break;
+
+   case LED_UNDER_40_PERCENT:
+      gpio_WriteChannel(LED_CHANNEL_0, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_1, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_2, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_3, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_4, TRUE);
+      break;
+
+   case LED_UNDER_20_PERCENT:
+      gpio_WriteChannel(LED_CHANNEL_0, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_1, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_2, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_3, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_4, TRUE);
+      break;
+
+   case LED_INVALID:
+   default:
+      gpio_WriteChannel(LED_CHANNEL_0, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_1, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_2, TRUE);
+      gpio_WriteChannel(LED_CHANNEL_3, FALSE);
+      gpio_WriteChannel(LED_CHANNEL_4, TRUE);
+      break;
+   }
+}
+
 
 /* 80%, 60%, 40%, 20% of 1 * 3.7V, 5* 3.7V, ... 6 * 3.7V */
 float32 cellArray[6][4] =
@@ -100,19 +164,19 @@ ledPercentIndicatorType checkUbatState(lipoCellSwitchType cells, float32 ubatVol
 
    ledPercentIndicator = LED_FULL;
 
-   if(ubatVoltage < cellArray[cells - 1][0])
+   if(ubatVoltage < cellArray[cells][0])
    {
       ledPercentIndicator = LED_UNDER_80_PERCENT;
    }
-   if(ubatVoltage < cellArray[cells - 1][1])
+   if(ubatVoltage < cellArray[cells][1])
    {
       ledPercentIndicator = LED_UNDER_60_PERCENT;
    }
-   if(ubatVoltage < cellArray[cells - 1][2])
+   if(ubatVoltage < cellArray[cells][2])
    {
       ledPercentIndicator = LED_UNDER_40_PERCENT;
    }
-   if(ubatVoltage < cellArray[cells - 1][3])
+   if(ubatVoltage < cellArray[cells][3])
    {
       ledPercentIndicator = LED_UNDER_20_PERCENT;
    }
@@ -126,9 +190,11 @@ int main()
    uint16 ubatChannel = 0;
    uint8 lipo_switch = 0;
    float32 ubatVoltage;
-   uint8 led = 0;
+   ledPercentIndicatorType led = LED_FULL;
 
+   gpio_init();
    adc_init(ADC_CALLBACK_NULL_PTR);
+
 
    sei(); /* Enable the interrupts */
    while(1)
@@ -141,14 +207,15 @@ int main()
       ubatChannel = adc_read10bit();
       ubatVoltage = ubat_digit_to_volt(ubatChannel);
 
-      if(lipo_switch > 0)
+      if(lipo_switch > SWITCH_CELL_NONE)
       {
          led = checkUbatState(lipo_switch, ubatVoltage);
       }
       else
       {
-         led = 99;
+         led = LED_INVALID;
       }
+      showLedStatus(led);
       _delay_ms(500);
    }
    return 0;

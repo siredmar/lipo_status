@@ -5,39 +5,39 @@ const gpio_ConfigType gpio_initialConfiguration_s =
       {
        /* PORT B */
             {
-                  GPIO_FALSE,
+                  GPIO_TRUE,
                   GPIO_CHANNEL_PB0,
-                  GPIO_INPUT,
-                  GPIO_PIN_INITIAL_HIGH
-            },
-            {
-                  GPIO_FALSE,
-                  GPIO_CHANNEL_PB1,
-                  GPIO_INPUT,
-                  GPIO_PIN_INITIAL_HIGH
-            },
-            {
-                  GPIO_FALSE,
-                  GPIO_CHANNEL_PB2,
-                  GPIO_INPUT,
-                  GPIO_PIN_INITIAL_HIGH
-            },
-            {
-                  GPIO_FALSE,
-                  GPIO_CHANNEL_PB3,
-                  GPIO_INPUT,
-                  GPIO_PIN_INITIAL_HIGH
-            },
-            {
-                  GPIO_FALSE,
-                  GPIO_CHANNEL_PB4,
-                  GPIO_INPUT,
-                  GPIO_PIN_INITIAL_HIGH
+                  GPIO_OUTPUT,
+                  GPIO_PIN_INITIAL_LOW
             },
             {
                   GPIO_TRUE,
-                  GPIO_CHANNEL_PB5,
+                  GPIO_CHANNEL_PB1,
                   GPIO_OUTPUT,
+                  GPIO_PIN_INITIAL_LOW
+            },
+            {
+                  GPIO_TRUE,
+                  GPIO_CHANNEL_PB2,
+                  GPIO_OUTPUT,
+                  GPIO_PIN_INITIAL_LOW
+            },
+            {
+                  GPIO_TRUE,
+                  GPIO_CHANNEL_PB3,
+                  GPIO_OUTPUT,
+                  GPIO_PIN_INITIAL_LOW
+            },
+            {
+                  GPIO_TRUE,
+                  GPIO_CHANNEL_PB4,
+                  GPIO_OUTPUT,
+                  GPIO_PIN_INITIAL_LOW
+            },
+            {
+                  GPIO_FALSE,
+                  GPIO_CHANNEL_PB5,
+                  GPIO_INPUT,
                   GPIO_PIN_INITIAL_LOW
             },
             {

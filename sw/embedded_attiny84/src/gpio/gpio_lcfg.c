@@ -17,34 +17,34 @@ const gpio_ConfigType gpio_initialConfiguration_s =
                   GPIO_PIN_INITIAL_HIGH
             },
             {
-                  GPIO_FALSE,
+                  GPIO_TRUE,
                   GPIO_CHANNEL_PA2,
-                  GPIO_INPUT,
-                  GPIO_PIN_INITIAL_HIGH
+                  GPIO_OUTPUT,
+                  GPIO_PIN_INITIAL_LOW
             },
             {
-                  GPIO_FALSE,
+                  GPIO_TRUE,
                   GPIO_CHANNEL_PA3,
                   GPIO_INPUT,
-                  GPIO_PIN_INITIAL_HIGH
+                  GPIO_PIN_INITIAL_LOW
             },
             {
-                  GPIO_FALSE,
+                  GPIO_TRUE,
                   GPIO_CHANNEL_PA4,
                   GPIO_INPUT,
-                  GPIO_PIN_INITIAL_HIGH
+                  GPIO_PIN_INITIAL_LOW
             },
             {
                   GPIO_TRUE,
                   GPIO_CHANNEL_PA5,
                   GPIO_OUTPUT,
-                  GPIO_PIN_INITIAL_HIGH
+                  GPIO_PIN_INITIAL_LOW
             },
             {
-                  GPIO_FALSE,
+                  GPIO_TRUE,
                   GPIO_CHANNEL_PA6,
                   GPIO_INPUT,
-                  GPIO_PIN_INITIAL_HIGH
+                  GPIO_PIN_INITIAL_LOW
             },
             {
                   GPIO_FALSE,

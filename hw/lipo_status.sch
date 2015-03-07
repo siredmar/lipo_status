@@ -9281,6 +9281,94 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </deviceset>
 </devicesets>
 </library>
+<library name="SchlegelAr_Master">
+<packages>
+<package name="SOT23">
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="1.4224" y1="-0.6604" x2="-1.4224" y2="-0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="-0.6604" x2="-1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="51"/>
+<wire x1="-1.4224" y1="-0.1854" x2="-1.4224" y2="0.6604" width="0.1524" layer="21"/>
+<wire x1="-1.4224" y1="0.6604" x2="-0.6576" y2="0.6604" width="0.1524" layer="21"/>
+<wire x1="1.4224" y1="0.6604" x2="1.4224" y2="-0.1854" width="0.1524" layer="21"/>
+<wire x1="0.6326" y1="0.6604" x2="1.4224" y2="0.6604" width="0.1524" layer="21"/>
+<smd name="3" x="0" y="1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="2" x="0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<smd name="1" x="-0.95" y="-1.1" dx="1" dy="1.4" layer="1"/>
+<text x="-1.905" y="1.905" size="1.27" layer="25">&gt;NAME</text>
+<text x="-1.905" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.2286" y1="0.7112" x2="0.2286" y2="1.2954" layer="51"/>
+<rectangle x1="0.7112" y1="-1.2954" x2="1.1684" y2="-0.7112" layer="51"/>
+<rectangle x1="-1.1684" y1="-1.2954" x2="-0.7112" y2="-0.7112" layer="51"/>
+</package>
+</packages>
+<symbols>
+<symbol name="P-MOSFET">
+<wire x1="-1.778" y1="-0.762" x2="-1.778" y2="0" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="0" x2="-1.778" y2="0.762" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="-3.175" x2="-1.778" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="-2.54" x2="-1.778" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="0" x2="0" y2="0" width="0.1524" layer="94"/>
+<wire x1="0" y1="0" x2="0" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-1.778" y1="1.905" x2="-1.778" y2="2.54" width="0.254" layer="94"/>
+<wire x1="-1.778" y1="2.54" x2="-1.778" y2="3.175" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="-1.778" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="1.27" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="0.508" x2="1.27" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="0" y1="2.54" x2="1.27" y2="2.54" width="0.1524" layer="94"/>
+<wire x1="-1.778" y1="-2.54" x2="1.27" y2="-2.54" width="0.1524" layer="94"/>
+<wire x1="0.508" y1="0.762" x2="0.762" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="0.762" y1="0.508" x2="1.27" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="1.27" y1="0.508" x2="1.778" y2="0.508" width="0.1524" layer="94"/>
+<wire x1="1.778" y1="0.508" x2="2.032" y2="0.254" width="0.1524" layer="94"/>
+<circle x="0" y="2.54" radius="0.3592" width="0" layer="94"/>
+<circle x="0" y="-2.54" radius="0.3592" width="0" layer="94"/>
+<text x="6.35" y="-3.81" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<text x="3.81" y="-3.81" size="1.778" layer="95" rot="R90">&gt;NAME</text>
+<pin name="S" x="0" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
+<pin name="G" x="-5.08" y="2.54" visible="off" length="short" direction="pas"/>
+<pin name="D" x="0" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
+<polygon width="0.1524" layer="94">
+<vertex x="1.27" y="0.508"/>
+<vertex x="1.778" y="-0.254"/>
+<vertex x="0.762" y="-0.254"/>
+</polygon>
+<polygon width="0.1524" layer="94">
+<vertex x="0" y="0"/>
+<vertex x="-1.016" y="0.762"/>
+<vertex x="-1.016" y="-0.762"/>
+</polygon>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="IRLML5203TRPBF" prefix="T">
+<description>&lt;b&gt;
+IRLML5203TRPBF - MOSFET MOSFT P-Ch -30V -3A 98mOhm 9.5nC Log Lvl
+
+&lt;/b&gt;&lt;br&gt;&lt;br&gt;last modified: Armin Schlegel, 28.04.2014  &lt;br&gt;&lt;br&gt;
+
+http://de.mouser.com/ProductDetail/International-Rectifier/IRLML5203TRPBF/?qs=sGAEpiMZZMshyDBzk1%2fWi5%252bqVgN3%252bWS8t7qb9msI9Rk%3d
+&lt;br&gt; &lt;br&gt;
+http://www.mouser.com/ds/2/200/irlml5203pbf-223113.pdf</description>
+<gates>
+<gate name="G$1" symbol="P-MOSFET" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOT23">
+<connects>
+<connect gate="G$1" pin="D" pad="3"/>
+<connect gate="G$1" pin="G" pad="1"/>
+<connect gate="G$1" pin="S" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -9331,7 +9419,6 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="C2" library="rcl" deviceset="C-EU" device="C0805" value="100n"/>
 <part name="C3" library="rcl" deviceset="C-EU" device="C0805" value="22u"/>
 <part name="IC1" library="v-reg" deviceset="LM317?*" device="MBSTT3" value="LM317-3V3"/>
-<part name="P+2" library="supply1" deviceset="VCC" device=""/>
 <part name="+3V3" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
@@ -9344,6 +9431,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <part name="R20" library="rcl" deviceset="R-EU_" device="R0603" value="13k"/>
 <part name="P+3" library="supply1" deviceset="VCC" device=""/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
+<part name="T1" library="SchlegelAr_Master" deviceset="IRLML5203TRPBF" device=""/>
+<part name="GND10" library="supply1" deviceset="GND" device=""/>
+<part name="R21" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
 </parts>
 <sheets>
 <sheet>
@@ -9384,7 +9474,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R16" gate="G$1" x="177.8" y="144.78"/>
 <instance part="R17" gate="G$1" x="177.8" y="137.16"/>
 <instance part="JP2" gate="A" x="33.02" y="96.52" rot="R180"/>
-<instance part="P+1" gate="VCC" x="40.64" y="111.76"/>
+<instance part="P+1" gate="VCC" x="40.64" y="116.84"/>
 <instance part="GND5" gate="1" x="40.64" y="78.74"/>
 <instance part="C1" gate="G$1" x="12.7" y="139.7"/>
 <instance part="C2" gate="G$1" x="66.04" y="104.14"/>
@@ -9393,11 +9483,10 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <attribute name="NAME" x="71.12" y="114.3" size="1.778" layer="95"/>
 <attribute name="VALUE" x="71.12" y="116.84" size="1.778" layer="96"/>
 </instance>
-<instance part="P+2" gate="VCC" x="66.04" y="114.3"/>
 <instance part="+3V3" gate="G$1" x="88.9" y="114.3"/>
-<instance part="GND6" gate="1" x="66.04" y="93.98"/>
-<instance part="GND7" gate="1" x="78.74" y="93.98"/>
-<instance part="GND8" gate="1" x="88.9" y="93.98"/>
+<instance part="GND6" gate="1" x="66.04" y="78.74"/>
+<instance part="GND7" gate="1" x="78.74" y="78.74"/>
+<instance part="GND8" gate="1" x="88.9" y="78.74"/>
 <instance part="R18" gate="G$1" x="76.2" y="162.56" rot="R270"/>
 <instance part="+3V4" gate="G$1" x="76.2" y="172.72"/>
 <instance part="TP1" gate="G$1" x="83.82" y="160.02" rot="R180"/>
@@ -9406,6 +9495,9 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <instance part="R20" gate="G$1" x="119.38" y="111.76" rot="R270"/>
 <instance part="P+3" gate="VCC" x="119.38" y="137.16"/>
 <instance part="GND9" gate="1" x="119.38" y="101.6"/>
+<instance part="T1" gate="G$1" x="50.8" y="109.22" rot="MR90"/>
+<instance part="GND10" gate="1" x="53.34" y="78.74"/>
+<instance part="R21" gate="G$1" x="53.34" y="93.98" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -9618,23 +9710,28 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 </segment>
 <segment>
 <pinref part="C2" gate="G$1" pin="2"/>
-<wire x1="66.04" y1="99.06" x2="66.04" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="99.06" x2="66.04" y2="81.28" width="0.1524" layer="91"/>
 <pinref part="GND6" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="ADJ"/>
-<wire x1="78.74" y1="101.6" x2="78.74" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="101.6" x2="78.74" y2="81.28" width="0.1524" layer="91"/>
 <pinref part="GND7" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="C3" gate="G$1" pin="2"/>
 <pinref part="GND8" gate="1" pin="GND"/>
-<wire x1="88.9" y1="96.52" x2="88.9" y2="99.06" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="81.28" x2="88.9" y2="99.06" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R20" gate="G$1" pin="2"/>
 <pinref part="GND9" gate="1" pin="GND"/>
 <wire x1="119.38" y1="106.68" x2="119.38" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="GND10" gate="1" pin="GND"/>
+<pinref part="R21" gate="G$1" pin="2"/>
+<wire x1="53.34" y1="81.28" x2="53.34" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$16" class="0">
@@ -9841,6 +9938,7 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <wire x1="40.64" y1="99.06" x2="40.64" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="101.6" x2="40.64" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="104.14" x2="40.64" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="40.64" y1="109.22" x2="40.64" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="93.98" x2="40.64" y2="93.98" width="0.1524" layer="91"/>
 <junction x="40.64" y="93.98"/>
 <pinref part="JP2" gate="A" pin="4"/>
@@ -9856,20 +9954,32 @@ new: Attribute TP_SIGNAL_NAME&lt;br&gt;
 <pinref part="JP2" gate="A" pin="7"/>
 <wire x1="35.56" y1="104.14" x2="40.64" y2="104.14" width="0.1524" layer="91"/>
 <junction x="40.64" y="104.14"/>
-</segment>
-<segment>
-<pinref part="IC1" gate="G$1" pin="IN"/>
-<pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="71.12" y1="109.22" x2="66.04" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="66.04" y1="109.22" x2="66.04" y2="106.68" width="0.1524" layer="91"/>
-<junction x="66.04" y="109.22"/>
-<wire x1="66.04" y1="109.22" x2="66.04" y2="111.76" width="0.1524" layer="91"/>
-<pinref part="P+2" gate="VCC" pin="VCC"/>
+<pinref part="T1" gate="G$1" pin="D"/>
+<wire x1="45.72" y1="109.22" x2="40.64" y2="109.22" width="0.1524" layer="91"/>
+<junction x="40.64" y="109.22"/>
 </segment>
 <segment>
 <pinref part="P+3" gate="VCC" pin="VCC"/>
 <pinref part="R19" gate="G$1" pin="1"/>
 <wire x1="119.38" y1="134.62" x2="119.38" y2="132.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$19" class="0">
+<segment>
+<pinref part="T1" gate="G$1" pin="G"/>
+<pinref part="R21" gate="G$1" pin="1"/>
+<wire x1="53.34" y1="99.06" x2="53.34" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$20" class="0">
+<segment>
+<pinref part="T1" gate="G$1" pin="S"/>
+<pinref part="IC1" gate="G$1" pin="IN"/>
+<wire x1="55.88" y1="109.22" x2="66.04" y2="109.22" width="0.1524" layer="91"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<wire x1="66.04" y1="109.22" x2="71.12" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="66.04" y1="106.68" x2="66.04" y2="109.22" width="0.1524" layer="91"/>
+<junction x="66.04" y="109.22"/>
 </segment>
 </net>
 </nets>

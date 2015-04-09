@@ -1,0 +1,48 @@
+Partlist
+
+Exported from lipo_status.brd at 4/9/15 7:17 AM
+
+EAGLE Version 6.6.0 Copyright (c) 1988-2014 CadSoft
+
+Assembly variant: 
+
+Part     Value          Package      Library            Position (mm)         Orientation
+
+C1       100n           C0603        rcl                (16.5 16.2)           MR90
+C2       100n           C0805        rcl                (10.4 14.9)           MR180
+C3       22u            C0805        rcl                (11.2 20.4)           MR0
+IC1      LM317-3V3      SOT223       v-reg              (9.7 17.3)            R270
+JP1                     1X06         pinhead            (36.3 11.6)           R270
+JP2                     1X07         pinhead            (2.4 11.6)            R90
+LED1                    CHIP-LED0805 led                (32 20.3)             R270
+LED2                    CHIP-LED0805 led                (32 18.6)             R270
+LED3                    CHIP-LED0805 led                (32 16.9)             R270
+LED4                    CHIP-LED0805 led                (32 15.2)             R270
+LED5                    CHIP-LED0805 led                (32 13.5)             R270
+R1       470R           R0603        rcl                (28.6 20.3)           R0
+R2       470R           R0603        rcl                (28.6 18.6)           R0
+R3       470R           R0603        rcl                (28.6 16.9)           R0
+R4       470R           R0603        rcl                (28.6 15.2)           R0
+R5       470R           R0603        rcl                (28.6 13.5)           R0
+R6       100k           R0603        rcl                (8 6.8)               R270
+R7       80k            R0603        rcl                (10.5 6.8)            R270
+R8       60k            R0603        rcl                (13 6.8)              R270
+R9       10k            R0603        rcl                (20.7 6.8)            R90
+R10      20k            R0603        rcl                (18.2 6.8)            R90
+R11      40k            R0603        rcl                (15.6 6.8)            R90
+R12      10k            R0603        rcl                (15 19.1)             MR270
+R13      470R           R0603        rcl                (28.5 20.3)           MR180
+R14      470R           R0603        rcl                (28.5 18.6)           MR180
+R15      470R           R0603        rcl                (28.5 16.9)           MR180
+R16      470R           R0603        rcl                (28.5 15.2)           MR180
+R17      470R           R0603        rcl                (28.5 13.5)           MR180
+R18      10k            R0603        rcl                (19.2 17.1)           MR180
+R19      100k           R0603        rcl                (21.4 19.4)           MR180
+R20      13k            R0603        rcl                (23.1 21)             MR180
+R21      10k            R0603        rcl                (10.1 16.8)           MR180
+S1                      DIP02YL      switch-dil         (27.3 7.3)            R0
+S2                      DIP06YL      switch-dil         (14.3 7.3)            R0
+T1       IRLML5203TRPBF SOT23        SchlegelAr_Master  (6.5 15.9)            MR270
+TP1      TPSQPAD1-13    P1-13        testpad            (32.5 5.1)            R0
+TP2      TPSQPAD1-13    P1-13        testpad            (32.5 7.7)            R0
+U$1      ATTINY84       SO14         SparkFun-DigitalIC (20.6 16.5)           R0
